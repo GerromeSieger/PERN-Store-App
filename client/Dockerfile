@@ -24,4 +24,4 @@ FROM nginx:stable-alpine
 #EXPOSE 3000
 COPY --from=build /app/build /usr/share/nginx/html
 COPY --from=build /app /usr/share/nginx/html
-COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
+COPY default.conf /etc/nginx/conf.d/default.conf
