@@ -12,6 +12,10 @@ RUN npm install react-hook-form --force
 
 RUN npm install react-paystack --force
 
+RUN npm run build
+
+RUN npm install -g serve
+
 EXPOSE 3000
 
-CMD [ "yarn", "start" ]
+CMD ["serve", "dist"]
