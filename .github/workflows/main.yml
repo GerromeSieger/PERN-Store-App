@@ -36,3 +36,17 @@ jobs:
           context: ./client
           push: true
           tags: gerrome/pern-store-app_client:1                  
+
+      - name: Build & push client
+        uses: docker/build-push-action@v3
+        with:
+          context: ./postgres
+          push: true
+          tags: gerrome/pern-store-app_postgres:1                  
+
+      - name: Build & push nginx
+        uses: docker/build-push-action@v3
+        with:
+          context: ./nginx
+          push: true
+          tags: gerrome/pern-store-app_nginx:1                  
