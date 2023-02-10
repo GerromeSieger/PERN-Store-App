@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 
 COPY . .
 
-RUN npm install
+RUN npm ci --no-audit || npm ci --no-audit --maxsockets 1
 
 RUN npm run build
 
