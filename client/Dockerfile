@@ -4,12 +4,8 @@ WORKDIR /usr/src/app
 
 COPY . .
 
-RUN npm ci --no-audit || npm ci --no-audit --maxsockets 1
-
-RUN npm run build
-
-RUN npm install -g serve
+RUN npm i --no-audit || npm i --no-audit --maxsockets 1
 
 EXPOSE 3000
 
-CMD ["serve", "dist"]
+CMD [ "yarn", "start" ]
