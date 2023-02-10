@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = import.meta.env.PROD ? import.meta.env.VITE_API_URL : "http://localhost:9000/api";
+const baseURL = import.meta.env.PROD ? import.meta.env.VITE_API_URL : "http://victorifah.20.84.39.184.nip.io/api";
 
 const API = axios.create({
   baseURL,
