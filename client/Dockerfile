@@ -8,6 +8,8 @@ RUN npm i --no-audit || npm i --no-audit --maxsockets 1
 
 RUN npm install react-google-login --force
 
+RUN npm install react-hook-form --force 
+
 EXPOSE 3000
 
 CMD [ "yarn", "start" ]
