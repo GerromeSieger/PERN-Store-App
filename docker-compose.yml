@@ -2,19 +2,19 @@ version: "3.8"
 
 services:
   server:
-    image: pern-store-server
+    image: gerrome/pern-store-app_server:1
     container_name: pern-store-server
-    build:
-      context: ./server
-      dockerfile: Dockerfile
+    #build:
+    #  context: ./server
+    #  dockerfile: Dockerfile
     # restart: always
-    env_file:
-      - ./server/.env
+    #env_file:
+    #  - ./server/.env
     environment:
-      - POSTGRES_HOST=pern-store-db
+      - POSTGRES_HOST=postgres
       - POSTGRES_DB=pernstore
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=adminuser
+      - POSTGRES_PASSWORD=postgres
     volumes:
       # Maps the server directory to
       # the working directory in the container
@@ -26,16 +26,16 @@ services:
     ports:
       - 9000:9000
     depends_on:
-      - database
+      - postgres
   client:
-    image: pern-store-client
+    image: gerrome/pern-store-app_client:1 
     container_name: pern-store-client
     restart: unless-stopped
-    env_file:
-      - ./client/.env
-    build:
-      context: ./client
-      dockerfile: Dockerfile
+   # env_file:
+   #   - ./client/.env
+   # build:
+    #  context: ./client
+     # dockerfile: Dockerfile
     ports:
       - 3000:3000
     volumes:
@@ -43,15 +43,26 @@ services:
       - /usr/src/app/node_modules
     depends_on:
       - server
-  database:
-    container_name: pern-store-db
-    image: postgres
+
+  nginx:
+    image: gerrome/pern-store-app_nginx:1
+    container_name: nginx-container
+    ports:
+      - 80:80
+    depends_on:
+      - client      
+
+  postgres:
+    container_name: pern-store-db 
+    image: gerrome/pern-store-app_postgres:1
     restart: always
     env_file:
       - ./server/.env
     environment:
       # other environment variables is in ./server/.env file
-      - POSTGRES_PASSWORD=adminuser
+      - POSTGRES_DB=pernstore
+      - POSTGRES_USER=postgres      
+      - POSTGRES_PASSWORD=postgres
     ports:
       - 7890:5432
     volumes:
@@ -68,7 +79,7 @@ services:
     ports:
       - "16543:80"
     depends_on:
-      - database
+      - postgres
 volumes:
   db:
     driver: local

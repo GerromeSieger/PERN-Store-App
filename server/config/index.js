@@ -5,9 +5,9 @@ const isProduction = process.env.NODE_ENV === "production";
 const database =
   process.env.NODE_ENV === "test"
     ? process.env.POSTGRES_DB_TEST
-    : "PERN-Store";
+    : "pernstore";
 
-const connectionString = `postgresql://postgres:postgres@postgres:5432/PERN-Store`;
+const connectionString = `postgresql://postgres:postgres@postgres:5432/pernstore`;
 const pool = new Pool({
   connectionString,
   /*
