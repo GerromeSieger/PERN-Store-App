@@ -1,6 +1,6 @@
 FROM node:16 as build
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
 COPY . .
 
@@ -18,6 +18,14 @@ RUN npm run build
 
 RUN npm install -g serve
 
-EXPOSE 3000
+#EXPOSE 3000
 
-CMD ["serve", "dist"]
+#CMD ["serve", "dist"]
+
+FROM nginx:stable-alpine
+
+COPY --from=build /app/dist /usr/share/nginx/html
+
+COPY --from=build /app /usr/share/nginx/html
+
+COPY default.conf /etc/nginx/conf.d/default.conf
