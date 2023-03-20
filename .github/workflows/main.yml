@@ -35,7 +35,7 @@ jobs:
         with:
           context: ./client
           push: true
-          tags: gerrome/pern-store-app_client:1.3
+          tags: gerrome/pern-store-app_client:1.4
 
       - name: Build & push client
         uses: docker/build-push-action@v3
