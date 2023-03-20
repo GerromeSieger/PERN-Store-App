@@ -18,5 +18,4 @@ RUN npm install -g serve
 
 EXPOSE 3000
 
-CMD [ "yarn", "start" ]
-#CMD ["serve", "dist"]
+CMD ["serve", "dist"]
