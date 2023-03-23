@@ -18,4 +18,4 @@ RUN npm install -g serve
 
 EXPOSE 3000
 
-CMD ["serve", "dist"]
+CMD ["serve", "dist", "--host=0.0.0.0"]
